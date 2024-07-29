@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: Api Nexa Telemetrys
-  description: ''
+  title: Api Nexa Telemetry
+  description: 'First Public Api For Nexa'
   version: '1.0'
 servers:
   - url: https://testapimnexa.azure-api.net
