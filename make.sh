@@ -3,7 +3,7 @@
 echo "Getting started"
 
 # Bundle docs into zero-dependency HTML file
-npx redoc-cli bundle ApiNexaTelemetry.openapi.yaml && \
+npx redoc-cli bundle docs/ApiNexaTelemetry.openapi.yaml && \
 ren redoc-static.html index.html && \
 echo "Changed name from redoc-static.html to index.html" && \
 # Add favicon
