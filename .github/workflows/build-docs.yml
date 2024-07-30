@@ -14,7 +14,7 @@ jobs:
     - name: Build docs
       run: ./make.sh
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3 # https://github.com/peaceiris/actions-gh-pages
+      uses: peaceiris/actions-gh-pages@v4 # https://github.com/peaceiris/actions-gh-pages
       with:
         github_token: ${{ secrets.ACTIONS_DEPLOY_KEY}}
         publish_dir: .
