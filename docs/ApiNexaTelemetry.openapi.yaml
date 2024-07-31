@@ -4,7 +4,8 @@ info:
   description: 'First Public Api For Nexa'
   contact: {
     "name": "Corey Visotski",
-    "url": "https://www.nexaplatform.com/"
+    "url": "https://www.nexaplatform.com/",
+    "email":"corey.visotski@wattswater.com"
   }
   version: '1.0'
 servers:
