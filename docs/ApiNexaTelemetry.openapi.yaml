@@ -21,8 +21,8 @@ info:
       - Click **Generate** to create your API key.
       - Copy the generated API key and keep it secure. You will need it to authenticate your API requests.
   x-logo:
-    url: 'https://github.com/cvisotski-ww/redoc-test/tree/main/docs/NexaLogo.png'
-    altText: Museum logo
+    url: 'https://github.com/cvisotski-ww/redoc-test/blob/main/docs/NexaLogo.png'
+    altText: Nexa Logo
 
   contact: {
     "name": "Corey Visotski",
