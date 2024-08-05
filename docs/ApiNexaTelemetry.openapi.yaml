@@ -20,6 +20,9 @@ info:
       - Choose the permissions you need (e.g., read-only or read-write).
       - Click **Generate** to create your API key.
       - Copy the generated API key and keep it secure. You will need it to authenticate your API requests.
+  x-logo:
+    url: 'https://github.com/cvisotski-ww/redoc-test/tree/main/docs/NexaLogo.png'
+    altText: Museum logo
 
   contact: {
     "name": "Corey Visotski",
