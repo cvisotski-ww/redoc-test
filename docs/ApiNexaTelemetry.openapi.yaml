@@ -1,0 +1,199 @@
+openapi: 3.1.0
+info:
+  title: Api Nexa Telemetry
+  description: |
+   Nexa Platform's Telemetry Public Apis
+
+   ## Getting Started 
+   Welcome to the API documentation! This guide will help you get started by generating an API key and integrating with one of our endpoints: Replay, Organization Information, or Historical Telemetry.
+  
+   ## Generating an API Key
+
+    To access the API, you need to generate an API key. Follow these steps:
+
+    1. **Log In**: Visit our [developer portal](https://developer.example.com) and log in with your credentials. If you do not have an account, create one by following the registration process.
+
+    2. **Generate API Key**:
+      - Navigate to the **API Keys** section in the developer portal.
+      - Click on **Create New API Key**.
+      - Provide a name for your key (e.g., "MyApp Key").
+      - Choose the permissions you need (e.g., read-only or read-write).
+      - Click **Generate** to create your API key.
+      - Copy the generated API key and keep it secure. You will need it to authenticate your API requests.
+  contact: {
+    "name": "Corey Visotski",
+    "url": "https://www.nexaplatform.com/",
+    "email":"corey.visotski@wattswater.com"
+  }
+  
+  version: "1.0"
+servers:
+  - url: https://testapimnexa.azure-api.net
+paths:
+  /webhook:
+    post:
+      summary: Replay
+      description: Replay Failed Webhook Integrations
+      operationId: replay
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Replay_Request"
+            example:
+              webhookId: string
+      responses:
+        "202":
+          description: ""
+          content:
+            application/json: {}
+  /organization/{id}:
+    get:
+      summary: Organization Information
+      description: Request information about an Organization
+      operationId: organization-information
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: ""
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Organization"
+              example:
+                id: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+                name: string
+                timeZone: string
+                address:
+                  country: string
+                  address1: string
+                  address2: string
+                  city: string
+                  state: string
+                  postalCode: string
+  /telemetry:
+    get:
+      summary: Historical Telemetry
+      description: Request Historical Telemetry over a time period
+      operationId: historical-telemetry
+      parameters:
+        - name: organizationId
+          in: query
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          schema:
+            type: string
+        - name: end_date
+          in: query
+          schema:
+            type: string
+        - name: aggregation
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Telemetry_Response"
+              example:
+                - telemetryData:
+                    - deviceId: string
+                      datapointName: string
+                      unitOfMeasure: string
+                      uoM: string
+                      values:
+                        - timestampUtc: 2024-07-29T12:41:02.6020000+00:00
+                          value: 0
+components:
+  schemas:
+    Replay_Request:
+      type: object
+      properties:
+        webhookId:
+          type: string
+      x-apim-schema-name: Replay Request
+    Organization:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        timeZone:
+          type: string
+        address:
+          type: object
+          properties:
+            country:
+              type: string
+            address1:
+              type: string
+            address2:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+    Telemetry_Response:
+      type: array
+      items:
+        required:
+          - telemetryData
+        type: object
+        properties:
+          telemetryData:
+            type: array
+            items:
+              required:
+                - deviceId
+                - datapointName
+                - unitOfMeasure
+                - uoM
+                - values
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                datapointName:
+                  type: string
+                unitOfMeasure:
+                  type: string
+                uoM:
+                  type: string
+                values:
+                  type: array
+                  items:
+                    required:
+                      - timestampUtc
+                      - value
+                    type: object
+                    properties:
+                      timestampUtc:
+                        type: string
+                      value:
+                        type: integer
+      x-apim-schema-name: Telemetry Response
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []
